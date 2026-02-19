@@ -1,0 +1,72 @@
+# VPS AI Agent
+
+智能 VPS 管理助手 - 自然语言控制服务器
+
+## 特性
+
+- 🤖 AI Agent 模式：生成计划 → 确认 → 执行
+- 💬 多模型对话：Claude Opus 4 / DeepSeek / GPT-4o
+- 🔒 密码保护的执行操作
+- 🌐 Web 界面管理
+- 📝 完整的执行日志
+
+## 快速开始
+```bash
+git clone https://github.com/你的用户名/vps-ai-agent.git
+cd vps-ai-agent
+chmod +x start.sh
+./start.sh
+```
+
+访问：http://你的IP:30800
+
+## 手动安装
+```bash
+# 创建虚拟环境
+python3 -m venv venv
+source venv/bin/activate
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 启动服务
+python3 main.py
+```
+
+## API 使用
+
+### 生成计划
+```bash
+curl -X POST http://localhost:30800 -H "Content-Type: application/json" -d '{
+  "action": "plan",
+  "request": "部署一个 nginx 服务",
+  "password": "112233"
+}'
+```
+
+### 执行计划
+```bash
+curl -X POST http://localhost:30800 -H "Content-Type: application/json" -d '{
+  "action": "execute",
+  "plan_id": "返回的plan_id",
+  "confirm": "执行",
+  "password": "112233"
+}'
+```
+
+## 配置
+
+在 `main.py` 中修改：
+- `ADMIN_PASSWORD`: 管理密码
+- `PORT`: 服务端口
+- API Keys: 各模型的密钥
+
+## 支持的操作
+
+- `write_file`: 写入文件
+- `run_shell`: 执行 Shell 命令
+- `restart_service`: 重启系统服务
+
+## 许可证
+
+MIT
