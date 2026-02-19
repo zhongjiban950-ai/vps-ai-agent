@@ -1,0 +1,15 @@
+[Unit]
+Description=VPS AI Agent Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/vps-ai-agent
+Environment="PATH=/root/vps-ai-agent/venv/bin"
+ExecStart=/root/vps-ai-agent/venv/bin/python3 main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
